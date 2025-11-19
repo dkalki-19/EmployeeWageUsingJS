@@ -189,3 +189,24 @@ console.log("UC9 (b) - Part Working Days:", partWorkingDays);
 console.log("UC9 (b) - No Working Days:", noWorkingDays);
 
 }
+
+{
+    // UC 10
+
+let dailyDataArray = [];
+
+day = 0;
+
+for (let wage of dailyWageArray) {
+    day++;
+    let hours = wage / WAGE_PER_HOUR;
+    dailyDataArray.push({
+        day: day,
+        hoursWorked: hours,
+        wageEarned: wage
+    });
+}
+
+console.log("UC10 - Daily Data Objects:\n", dailyDataArray);
+
+}
