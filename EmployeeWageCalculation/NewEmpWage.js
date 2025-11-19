@@ -263,3 +263,28 @@ let emp1 = new EmployeePayroll("Mark", "M", 30000, new Date());
 console.log("UC12 - Employee Payroll:\n" + emp1.toString());
 
 }
+
+{
+    // UC 13
+
+function validateName(name) {
+    try {
+        let nameRegex = /^[A-Z][a-zA-Z]{2,}$/;
+
+        if (!nameRegex.test(name)) {
+            throw "Invalid Name: Must start with capital & min 3 letters!";
+        }
+
+        console.log("Valid Name:", name);
+    }
+    catch (error) {
+        console.log("Error:", error);
+    }
+}
+
+// Testing
+validateName("John");   // valid
+validateName("jo");     // invalid
+validateName("ab");     // invalid
+
+}
