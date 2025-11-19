@@ -242,3 +242,24 @@ let noWorkingDaysUC11 = dailyDataArray
 console.log("UC11 (d) - No Working Days:", noWorkingDaysUC11);
 
 }
+
+{
+    // UC 12
+
+class EmployeePayroll {
+    constructor(name, gender, salary, startDate) {
+        this.name = name;
+        this.gender = gender;
+        this.salary = salary;
+        this.startDate = startDate;
+    }
+
+    toString() {
+        return `Name: ${this.name}, Gender: ${this.gender}, Salary: ${this.salary}, Start Date: ${this.startDate}`;
+    }
+}
+
+let emp1 = new EmployeePayroll("Mark", "M", 30000, new Date());
+console.log("UC12 - Employee Payroll:\n" + emp1.toString());
+
+}
