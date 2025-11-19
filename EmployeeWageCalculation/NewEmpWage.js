@@ -190,12 +190,10 @@ console.log("UC9 (b) - No Working Days:", noWorkingDays);
 
 }
 
-{
     // UC 10
-
 let dailyDataArray = [];
-
 day = 0;
+{
 
 for (let wage of dailyWageArray) {
     day++;
@@ -208,5 +206,39 @@ for (let wage of dailyWageArray) {
 }
 
 console.log("UC10 - Daily Data Objects:\n", dailyDataArray);
+
+}
+
+
+{
+    // UC 11
+
+// (a) Total wage and total hours
+let totalHoursUC11 = dailyDataArray.reduce((sum, obj) => sum + obj.hoursWorked, 0);
+let totalWageUC11 = dailyDataArray.reduce((sum, obj) => sum + obj.wageEarned, 0);
+
+console.log("UC11 (a) - Total Hours:", totalHoursUC11);
+console.log("UC11 (a) - Total Wage:", totalWageUC11);
+
+// (b) Full working days using forEach
+console.log("UC11 (b) - Full Working Days:");
+dailyDataArray.forEach(obj => {
+    if (obj.hoursWorked === 8)
+        console.log("Day:", obj.day);
+});
+
+// (c) Part working days using map → string array
+let partDaysUC11 = dailyDataArray
+    .filter(obj => obj.hoursWorked === 4)
+    .map(obj => `Day ${obj.day}`);
+
+console.log("UC11 (c) - Part Working Days:", partDaysUC11);
+
+// (d) No working days using map
+let noWorkingDaysUC11 = dailyDataArray
+    .filter(obj => obj.hoursWorked === 0)
+    .map(obj => obj.day);
+
+console.log("UC11 (d) - No Working Days:", noWorkingDaysUC11);
 
 }
