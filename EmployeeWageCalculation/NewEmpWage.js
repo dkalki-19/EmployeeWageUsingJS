@@ -110,33 +110,45 @@ console.log("UC6 - Total Wage: " + (totalEmpHrs * WAGE_PER_HOUR));
 
 // UC7
 
-// (a) Total Wage using reduce
-let totalWage = dailyWageArray.reduce((total, wage) => total + wage, 0);
-console.log("UC7 (a) - Total Wage using Reduce: " + totalWage);
 
-// (b) Day along with daily wage
-let dayWageMap = dailyWageArray.map((wage, index) => `Day ${index+1} = ${wage}`);
-console.log("UC7 (b) - Day + Daily Wage:\n", dayWageMap);
 
-// (c) Days when full-time wage (160) earned
-let fullTimeDays = dayWageMap.filter(day => day.includes("160"));
-console.log("UC7 (c) - Full Time Wage Days: ", fullTimeDays);
 
-// (d) First occurrence of full-time wage
-let firstFullTimeDay = dayWageMap.find(day => day.includes("160"));
-console.log("UC7 (d) - First Full Time Wage Day: ", firstFullTimeDay);
+// UC 7 REFACTORED
+
+// Convert wages to objects
+let dailyWageObjects = dailyWageArray.map((wage, index) => ({
+    day: index + 1,
+    wage: wage
+}));
+
+// (a) Total wage
+let totalWageUC7 = dailyWageObjects.reduce((sum, obj) => sum + obj.wage, 0);
+console.log("UC7 REF (a) - Total Wage:", totalWageUC7);
+
+// (b) Day + Wage using map
+let dayWageString = dailyWageObjects.map(obj => `Day ${obj.day}: ${obj.wage}`);
+console.log("UC7 REF (b) - Day Wise Wage:\n", dayWageString);
+
+// (c) Days with full-time wage
+let fullTimeDaysUC7 = dailyWageObjects.filter(obj => obj.wage === 160);
+console.log("UC7 REF (c) - Full-time Days:", fullTimeDaysUC7);
+
+// (d) First full-time wage
+let firstFullUC7 = dailyWageObjects.find(obj => obj.wage === 160);
+console.log("UC7 REF (d) - First Full-time Day:", firstFullUC7);
 
 // (e) Check if every full-time wage is 160
-let isAllFullTimeCorrect = fullTimeDays.every(day => day.includes("160"));
-console.log("UC7 (e) - All full-time wages correct? : ", isAllFullTimeCorrect);
+let everyFullUC7 = fullTimeDaysUC7.every(obj => obj.wage === 160);
+console.log("UC7 REF (e) - Every full-wage correct?", everyFullUC7);
 
-// (f) Check if any part-time wage (80)
-let hasPartTime = dailyWageArray.some(wage => wage === 80);
-console.log("UC7 (f) - Is there any Part-time Wage? : ", hasPartTime);
+// (f) Any part-time wage?
+let anyPartUC7 = dailyWageObjects.some(obj => obj.wage === 80);
+console.log("UC7 REF (f) - Any Part-Time Wage?", anyPartUC7);
 
-// (g) Number of days employee worked (wage > 0)
-let workedDays = dailyWageArray.filter(wage => wage > 0).length;
-console.log("UC7 (g) - Number of Days Employee Worked: ", workedDays);
+// (g) Number of days worked
+let workedDaysUC7 = dailyWageObjects.filter(obj => obj.wage > 0).length;
+console.log("UC7 REF (g) - Worked Days:", workedDaysUC7);
+
 
 
 // UC8 – Using Map to store Day wise Wage
