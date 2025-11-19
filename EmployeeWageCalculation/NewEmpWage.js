@@ -300,3 +300,82 @@ validateName("jo");     // invalid
 validateName("ab");     // invalid
 
 }
+
+// UC 14
+
+class EmployeePayrollUC14 {
+    constructor(id, name, gender, salary, startDate) {
+        this.id = this.validateId(id);
+        this.name = name;
+        this.gender = this.validateGender(gender);
+        this.salary = this.validateSalary(salary);
+        this.startDate = this.validateStartDate(startDate);
+    }
+
+    // Validate Employee ID (non-zero positive)
+    validateId(id) {
+        try {
+            let idRegex = /^[1-9][0-9]*$/;  // positive non-zero number
+            if (!idRegex.test(id))
+                throw "Invalid ID: Must be a positive, non-zero number";
+            return id;
+        } catch (err) {
+            console.log("ID Error:", err);
+        }
+    }
+
+    // Validate Gender (M or F)
+    validateGender(gender) {
+        try {
+            let genderRegex = /^[MF]$/;   
+            if (!genderRegex.test(gender))
+                throw "Invalid Gender: Must be 'M' or 'F'";
+            return gender;
+        } catch (err) {
+            console.log("Gender Error:", err);
+        }
+    }
+
+    // Validate Salary (positive non-zero)
+    validateSalary(salary) {
+        try {
+            let salaryRegex = /^[1-9][0-9]*$/;
+            if (!salaryRegex.test(salary))
+                throw "Invalid Salary: Must be a positive number";
+            return salary;
+        } catch (err) {
+            console.log("Salary Error:", err);
+        }
+    }
+
+    // Validate Start Date (not future)
+    validateStartDate(date) {
+        try {
+            let today = new Date();
+            let givenDate = new Date(date);
+
+            if (givenDate > today)
+                throw "Invalid Date: Start Date cannot be a future date";
+
+            return givenDate;
+        } catch (err) {
+            console.log("Date Error:", err);
+        }
+    }
+
+    toString() {
+        return `ID: ${this.id}, Name: ${this.name}, Gender: ${this.gender}, Salary: ${this.salary}, Start Date: ${this.startDate.toLocaleDateString()}`;
+    }
+}
+
+// ------------------------------------------------
+// TEST UC 14
+// ------------------------------------------------
+
+console.log("----- UC 14 Testing -----");
+
+let empA = new EmployeePayrollUC14(101, "John", "M", 30000, "2024-10-10");
+console.log(empA.toString());
+
+// Invalid inputs
+let empB = new EmployeePayrollUC14(0, "Chris", "X", -5000, "3025-01-01");
