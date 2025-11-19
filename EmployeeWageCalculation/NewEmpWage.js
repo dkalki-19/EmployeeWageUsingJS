@@ -85,11 +85,11 @@ const NO_OF_WORKING_DAYS = 10;
 
 //UC - 6
 
-{
-    // UC6
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
 let dailyWageArray = [];
+{
+
 
 function calcDailyWage(empHrs) {
     return empHrs * WAGE_PER_HOUR;
@@ -137,3 +137,24 @@ console.log("UC7 (f) - Is there any Part-time Wage? : ", hasPartTime);
 // (g) Number of days employee worked (wage > 0)
 let workedDays = dailyWageArray.filter(wage => wage > 0).length;
 console.log("UC7 (g) - Number of Days Employee Worked: ", workedDays);
+
+
+// UC8 – Using Map to store Day wise Wage
+let dayWiseWageMap = new Map();
+let dayCount = 0;
+
+for (let wage of dailyWageArray) {
+    dayCount++;
+    dayWiseWageMap.set(dayCount, wage);
+}
+
+console.log("UC8 - Day Wise Wage Map:");
+console.log(dayWiseWageMap);
+
+// Compute total wage using Map values
+let totalWageFromMap = 0;
+for (let wage of dayWiseWageMap.values()) {
+    totalWageFromMap += wage;
+}
+
+console.log("UC8 - Total Wage using Map: " + totalWageFromMap);
