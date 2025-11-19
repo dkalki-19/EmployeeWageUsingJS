@@ -158,3 +158,34 @@ for (let wage of dayWiseWageMap.values()) {
 }
 
 console.log("UC8 - Total Wage using Map: " + totalWageFromMap);
+
+{
+// UC 9
+
+let dailyHrsMap = new Map();
+let day = 0;
+
+// Build Daily Hours Map based on wages
+for (let wage of dailyWageArray) {
+    day++;
+    let hours = wage / WAGE_PER_HOUR;
+    dailyHrsMap.set(day, hours);
+}
+
+// (a) Total Wage and Total Hours using arrow functions
+let totalHours = [...dailyHrsMap.values()].reduce((sum, hrs) => sum + hrs, 0);
+let totalWage = [...dayWiseWageMap.values()].reduce((sum, wage) => sum + wage, 0);
+
+console.log("UC9 (a) - Total Hours:", totalHours);
+console.log("UC9 (a) - Total Wage:", totalWage);
+
+// (b) Full day / Part day / No work day
+let fullWorkingDays = [...dailyHrsMap.entries()].filter(([d, hrs]) => hrs === 8).map(([d, hrs]) => d);
+let partWorkingDays = [...dailyHrsMap.entries()].filter(([d, hrs]) => hrs === 4).map(([d, hrs]) => d);
+let noWorkingDays = [...dailyHrsMap.entries()].filter(([d, hrs]) => hrs === 0).map(([d, hrs]) => d);
+
+console.log("UC9 (b) - Full Working Days:", fullWorkingDays);
+console.log("UC9 (b) - Part Working Days:", partWorkingDays);
+console.log("UC9 (b) - No Working Days:", noWorkingDays);
+
+}
